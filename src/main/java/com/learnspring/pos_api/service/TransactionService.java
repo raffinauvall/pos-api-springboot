@@ -53,4 +53,13 @@ public class TransactionService {
 
         return transactionRepo.save(transaction);
     }
+
+    public List<Transaction> getAll() {
+        return transactionRepo.findAll();
+    }
+
+    public Transaction getById(Long id) {
+        return transactionRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+    }
 }
