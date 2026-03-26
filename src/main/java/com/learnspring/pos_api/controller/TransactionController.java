@@ -21,7 +21,7 @@ public class TransactionController {
         return new ApiResponse<>("Success", "Transaction Success", trx);
     }
 
-
+    @GetMapping
     public ApiResponse<List<Transaction>> getAll() {
         return new ApiResponse<>("success", "Successfully get transaction", service.getAll());
     }
