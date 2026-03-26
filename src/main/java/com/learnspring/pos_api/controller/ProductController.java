@@ -22,6 +22,11 @@ public class ProductController {
         return new ApiResponse<>("success", "Success get products", service.getAll());
     }
 
+    @GetMapping("/{id}")
+    public ApiResponse<Product> getById(@PathVariable Long id) {
+        return new ApiResponse<>("success", "Succesfully get product.", service.getById(id));
+    }
+
     @PostMapping
     public ApiResponse<Product> create(@RequestBody ProductRequest request){
         return new ApiResponse<>(

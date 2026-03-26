@@ -25,6 +25,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product getById(Long id) {
+        return productRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
     public Product create(ProductRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
