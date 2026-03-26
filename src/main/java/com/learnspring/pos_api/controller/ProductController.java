@@ -4,6 +4,7 @@ import com.learnspring.pos_api.dto.ApiResponse;
 import com.learnspring.pos_api.dto.ProductRequest;
 import com.learnspring.pos_api.model.Product;
 import com.learnspring.pos_api.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ApiResponse<Product> create(@RequestBody ProductRequest request){
+    public ApiResponse<Product> create(@Valid @RequestBody ProductRequest request){
         return new ApiResponse<>(
                 "success",
                 "Product created",
