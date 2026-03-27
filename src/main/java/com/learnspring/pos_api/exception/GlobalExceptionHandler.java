@@ -1,6 +1,7 @@
 package com.learnspring.pos_api.exception;
 
 import com.learnspring.pos_api.dto.ApiResponse;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.hibernate.annotations.NotFound;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(
                 new ApiResponse<>("error", ex.getMessage(), null),
                 HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<ApiResponse<Object>> handleUnauthorized(ExpiredJwtException ex) {
+        return new ResponseEntity<>(
+                new ApiResponse<>("error", "Token expired", null),
+                HttpStatus.UNAUTHORIZED
         );
     }
 }
